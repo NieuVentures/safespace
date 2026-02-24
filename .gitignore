@@ -1,0 +1,24 @@
+# Project work directory (contains user's private code)
+projects/*
+!projects/.gitkeep
+
+# Claude Code local config (may contain auth paths, personal settings)
+.claude/
+CLAUDE.md
+
+# Environment and secrets
+.env
+.env.*
+
+# Dependencies
+node_modules/
+
+# macOS
+.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+

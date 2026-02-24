@@ -1,0 +1,8 @@
+README.md
+.git
+.gitignore
+.DS_Store
+.claude
+.env
+.env.*
+projects
