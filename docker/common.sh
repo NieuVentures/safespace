@@ -16,10 +16,8 @@ VOLUMES=(
 )
 
 ensure_image() {
-    if ! docker image inspect "$IMAGE_NAME" &>/dev/null; then
-        echo "Building $IMAGE_NAME image..."
-        docker build -t "$IMAGE_NAME" "$SCRIPT_DIR/docker"
-    fi
+    echo "Building $IMAGE_NAME image..."
+    docker build -t "$IMAGE_NAME" "$SCRIPT_DIR/docker"
 }
 
 create_container() {

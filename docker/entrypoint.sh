@@ -21,8 +21,15 @@ chown claude:claude "$CLAUDE_JSON"
 ln -sf "$CLAUDE_HOME/.claude/.claude.json" "$CLAUDE_HOME/.claude.json"
 chown -h claude:claude "$CLAUDE_HOME/.claude.json"
 
+# Update Claude Code to latest version (runs as root before dropping privileges)
+npm update -g @anthropic-ai/claude-code --loglevel=warn
+
 # Drop to claude user, preserving TERM for proper terminal rendering
 export TERM="${TERM:-xterm-256color}"
+
+# Install plugins as claude user (idempotent — safe to run on every start)
+su claude -c "claude mcp marketplace add mksglu/claude-context-mode 2>/dev/null || true"
+su claude -c "claude install context-mode@claude-context-mode 2>/dev/null || true"
 
 # --shell flag: drop into an interactive shell instead of launching claude
 if [ "${1:-}" = "--shell" ]; then
